@@ -182,7 +182,7 @@ class Player extends Entity {
         });
     }
 
-    onSuccessfuly(gameWin) {
+    onSuccessfuly(gameWin, hand) {
         this.scene.playSound("winSound");
         Sounds["bgSound"].pause();
         this.scene.turnRight.setVisible(false);
@@ -194,6 +194,27 @@ class Player extends Entity {
             ease: "Sine.easeInOut",
             duration: 500,
             delay: 0,
+            scale: 1,
+            alpha: {
+                getStart: () => 0,
+                getEnd: () => 1,
+            },
+            repeat: 0,
+            yoyo: false,
+            onComplete: () => {
+                gameWin.scene.input.on("pointerdown", function () {
+                    window.install && window.install();
+                    console.log("GOTOSTORE")
+                });
+            },
+        });
+        
+        hand.anims.play("sprHandMotion", true);
+        this.scene.add.tween({
+            targets: hand,
+            ease: "Sine.easeInOut",
+            duration: 500,
+            delay: 500,
             scale: 1,
             alpha: {
                 getStart: () => 0,

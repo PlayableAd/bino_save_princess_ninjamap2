@@ -627,7 +627,7 @@ class Scene1PlayGame extends Phaser.Scene {
             yoyo: false,
             loop: 0,
             onComplete: () => {
-                player.onSuccessfuly(this.gameWin);
+                player.onSuccessfuly(this.gameWin, this.hand);
                 endGame = true;
             },
         });
